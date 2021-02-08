@@ -1,9 +1,111 @@
-# O Projeto
+# Projeto
 A proposta da criação do projeto visa atender o desafio elaborado pela equipe do InfoGlobo para testar os conhecimentos e habilidades em desenvolvimento backend. O projeto foi desenvolvido com objetivo para efetuar o CRUD persistindo em um banco de dados MySQL, utilizando como a base os dados obtidos a partir de consulta a API do Itunes. (https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/#searchexamples)
 
-# Tecnologias Utilizadas
-Python na versão 3.9.1
-Framework Flask
-Docker Desktop for Windows
-Docker Compose
-Banco de Dados MySQL na versão 8.0
+## Tecnologias
+
+- Python na versão 3.9.1
+- Framework Flask
+- Docker Desktop for Windows
+- Docker Compose
+- Banco de Dados MySQL na versão 8.0
+
+## Instalação
+
+Faz-se necessário utilizar para o projeto o Docker Desktop for Windows e Docker Compose instalados na máquina.
+
+Através da linha de comando via shell deve-se clonar o repositório:
+
+```shell
+git clone https://github.com/diogoneris/api-itunes.git
+cd api-itunes
+```
+
+O ponto de atenção é importante manter a seguinte estrutura dos arquivos. Caso contrário, o `docker-compose` pode não funcionar.
+  
+    api-itunes
+    └── app
+    │    ├── app.py
+    │    ├── db_connect.py
+    │    ├── Dockerfile
+    │    ├── helpers.py
+    │    ├── main.py
+    │    ├── requirements.py
+    │    └── test_helpers.py
+    └── db
+    │    └── init.sql
+    ├── docker-compose.yml
+    └── README.md
+
+Logo após fazer o download dos arquivos do repositório api-itunes, digitar a linha de comando abaixo para criar as imagens e os containers.
+
+```shell
+docker-compose up
+```
+
+Feito isto, o container já estará funcionando. Dependendo do sistema operacional utilizado pode-se acessar a API por meio de `localhost:5000` ou `192.168.99.100:5000`.
+
+O IP `192.168.99.100` é o default no Windows, mas caso não funcione, para pegar o IP correto pode-se usar o comando `docker-machine ip`.
+
+## Comandos úteis
+
+- Para parar o container:
+
+```shell
+docker-compose stop
+```
+
+- Para retomar o uso do container:
+
+```shell
+docker-compose start
+```
+
+- Para criar os containers novamente após alterações no código:
+
+```shell
+docker-compose up --build
+```
+
+- Para rodar os containers sem travar o terminal:
+
+```shell
+docker-compose up -d    # Pode-se usar --detach também
+```
+
+É importante comentar que o seguinte comando fará com que os dado não sejam persistidos no Banco de Dados:
+
+```shell
+docker-compose down   # Este comando deleta os containers e os dados do BD são reiniciados ao dar up nos containers novamente
+```
+
+Portanto, deve-se tomar cuidado ao usar este comando, pois pode gerar perda de dados.
+
+## Funcionamento
+Ao usar a API pela primeira vez, o Banco de Dados é inicializado com nenhum dado, apenas a base de dados e as tabelas são criadas.
+
+O primeiro passo então é adicionar algum artista ao BD. Para isso, pode-se usar comandos como `curl` ou programas específicos para este fim como `Postman` e `Insomnia`.
+
+Com essas ferramentas é possível fazer os requests corretamente e incluir o `body` do request corretamente quando necessário.
+
+Exemplos de usos podem ser vistos no link para a documentação no Postman:
+
+https://documenter.getpostman.com/view/10132901/SWT5j1Zc
+
+## Endpoints
+Com o container rodando no Docker é possível fazer chamadas a API utilizando os endpoints documentados em:
+
+https://documenter.getpostman.com/view/10132901/SWT5j1Zc
+
+Mais informações sobre como funciona a lógica da API também se encontram no link acima.
+
+## Testes Unitários
+O projeto também conta com um arquivo para testes unitários, chamado `test_helpers.py`, que pode ser encontrado dentro da pasta `app`.
+
+Para rodar os testes basta usar o comando:
+
+```shell
+python test_helpers.py
+```
+
+OBS: Como ainda estou iniciando em testes unitários, consegui realizar alguns poucos testes com o conhecimento que tenho no momento.
+
