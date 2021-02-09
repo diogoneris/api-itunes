@@ -64,14 +64,50 @@ Request feito para um caminho que não existe.
 
 Example Request -Page Not Found
 
-```shell
 curl --location --request GET '192.168.99.100:5000/' \
 --data-raw ''
-'''
 
 Example Response
 
 "Page not found."
+
+
+*POST Adicionar Artista
+```shell
+192.168.99.100:5000/artistas
+```
+Request para adicionar o artista ao Banco de Dados.
+
+Example Request
+
+curl --location --request POST '192.168.99.100:5000/artistas' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Joe Jonas"
+}'
+
+Example Response
+
+"Added successful."
+
+*POST Adicionar Álbum a Artista
+```shell
+192.168.99.100:5000/artistas/1/albuns
+```
+Request para adicionar album a um artista identificado pelo ID do Banco de Dados.
+
+Example Request
+
+curl --location --request POST '192.168.99.100:5000/artistas/2/albuns' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"name" : "Album"
+}'
+
+Example Response
+
+"Artist not on DB."
+
 
 ## Endpoints
 Com o container rodando no Docker é possível fazer chamadas a API utilizando os endpoints documentados em:
