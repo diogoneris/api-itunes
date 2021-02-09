@@ -280,15 +280,6 @@ Example Response
   }
 ]
 
-
-
-## Endpoints
-Com o container rodando no Docker é possível fazer chamadas a API utilizando os endpoints documentados em:
-
-https://documenter.getpostman.com/view/10132901/SWT5j1Zc
-
-Mais informações sobre como funciona a lógica da API também se encontram no link acima.
-
 ## Testes Unitários
 Há o teste unitário chamado `test_helpers.py`, que pode ser encontrado dentro da pasta `app`.
 

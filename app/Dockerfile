@@ -1,6 +1,6 @@
 FROM python:3.9.1-buster
 
-EXPOSE 3000
+EXPOSE 5000
 
 WORKDIR /app
 
