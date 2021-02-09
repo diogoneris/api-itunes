@@ -50,11 +50,11 @@ Para as máquinas virtuais Windows geralmente o IP `192.168.99.100` é o default
 
 Ao utilizar a API pela primeira vez, o banco de bados será inicializado sem dados, apenas com a estrura das tabelas.
 
-O primeiro passo então é adicionar algum artista ao BD. Para isso, pode-se usar comandos como `curl` ou programas específicos para este fim como `Postman` e `Insomnia`.
+O primeiro passo então é adicionar algum artista ao BD. Para isso, pode-se usar comandos como `curl`.
 
 Com essas ferramentas é possível fazer os requests corretamente e incluir o `body` do request corretamente quando necessário.
 
-Exemplos de usos podem ser utilizados:
+Exemplos que podem ser utilizados:
 
 * GET Page Not Found
 ```shell
