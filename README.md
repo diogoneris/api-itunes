@@ -56,7 +56,7 @@ Com essas ferramentas é possível fazer os requests corretamente e incluir o `b
 
 Exemplos de usos podem ser vistos no link para a documentação no Postman:
 
-GET Page Not Found
+* GET Page Not Found
 ```shell
 192.168.99.100:3000/
 ```
@@ -69,7 +69,9 @@ curl --location --request GET '192.168.99.100:5000/' \
 --data-raw ''
 '''
 
+Example Response
 
+"Page not found."
 
 ## Endpoints
 Com o container rodando no Docker é possível fazer chamadas a API utilizando os endpoints documentados em:
