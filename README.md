@@ -43,7 +43,7 @@ docker-compose up
 ```
 
 Logo após o comandi os containers encontraram em execução. O sistema operacional utilizado no desenvlvimento foi o Windows 10 acessando a API pelo `localhost:3000`. 
-Para as máquinas virtuais Windows geralmente o IP `192.168.99.100` é o default, mas caso não funcione tera que pega o IP correto da máquina
+Para as máquinas virtuais Windows geralmente o IP `192.168.99.100` é o default, mas caso não funcione terá que pegar o IP correto da máquina
 
 
 ## Utilizando a API
@@ -56,7 +56,20 @@ Com essas ferramentas é possível fazer os requests corretamente e incluir o `b
 
 Exemplos de usos podem ser vistos no link para a documentação no Postman:
 
-https://documenter.getpostman.com/view/10132901/SWT5j1Zc
+GET Page Not Found
+```shell
+192.168.99.100:3000/
+```
+Request feito para um caminho que não existe.
+
+Example Request -Page Not Found
+
+```shell
+curl --location --request GET '192.168.99.100:5000/' \
+--data-raw ''
+'''
+
+
 
 ## Endpoints
 Com o container rodando no Docker é possível fazer chamadas a API utilizando os endpoints documentados em:
