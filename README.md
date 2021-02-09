@@ -42,7 +42,7 @@ Logo após fazer o download dos arquivos do repositório api-itunes, digitar a l
 docker-compose up
 ```
 
-Logo após o comandi os containers encontraram em execução. O sistema operacional utilizado no desenvlvimento foi o Windows 10 acessando a API pelo `localhost:3000`. 
+Logo após o comandi os containers encontraram em execução. O sistema operacional utilizado no desenvlvimento foi o Windows 10 acessando a API pelo `localhost:5000`. 
 Para as máquinas virtuais Windows geralmente o IP `192.168.99.100` é o default, mas caso não funcione terá que pegar o IP correto da máquina
 
 
@@ -54,15 +54,15 @@ O primeiro passo então é adicionar algum artista ao BD. Para isso, pode-se usa
 
 Com essas ferramentas é possível fazer os requests corretamente e incluir o `body` do request corretamente quando necessário.
 
-Exemplos de usos podem ser vistos no link para a documentação no Postman:
+Exemplos de usos podem ser utilizados:
 
 * GET Page Not Found
 ```shell
-192.168.99.100:3000/
+192.168.99.100:5000/
 ```
 Request feito para um caminho que não existe.
 
-Example Request -Page Not Found
+Example Request
 
 curl --location --request GET '192.168.99.100:5000/' \
 --data-raw ''
@@ -72,7 +72,7 @@ Example Response
 "Page not found."
 
 
-*POST Adicionar Artista
+* POST Adicionar Artista
 ```shell
 192.168.99.100:5000/artistas
 ```
@@ -90,7 +90,7 @@ Example Response
 
 "Added successful."
 
-*POST Adicionar Álbum a Artista
+* POST Adicionar Álbum a Artista
 ```shell
 192.168.99.100:5000/artistas/1/albuns
 ```
@@ -108,6 +108,179 @@ Example Response
 
 "Artist not on DB."
 
+* POST Adicionar Musica a Álbum
+```shell
+192.168.99.100:5000/albuns/2/musicas
+```
+Request para adicionar música a um album identificado pelo ID do Banco de Dados.
+
+
+Example Request
+
+curl --location --request POST '192.168.99.100:5000/albuns/1/musicas' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Musica"
+}'
+
+Example Response
+
+"Album not on DB."
+
+* PUT Alterar nome de Artista de ID
+```shell
+192.168.99.100:5000/artistas/9
+```
+Request para alterar o nome de artista identificado pelo ID do Banco de Dados.
+
+
+Example Request
+
+curl --location --request PUT '192.168.99.100:5000/artistas/1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Novo Nome Artista"
+}'
+
+Example Response
+
+"Artist not on DB."
+
+* DEL Deletar todos os Artistas
+```shell
+192.168.99.100:5000/artistas
+```
+
+Example Request
+
+curl --location --request DELETE '192.168.99.100:5000/artistas'
+
+Example Response
+
+"Deletion successful"
+
+* DEL Deletar todos os Álbuns
+
+```shell
+192.168.99.100:5000/albuns
+'''
+
+Request para deletar todos os albuns do Banco de Dados.
+
+Example Request
+
+curl --location --request DELETE '192.168.99.100:5000/albuns'
+
+Example Response
+
+"Deletion successful"
+
+
+* GET Todos os artistas
+
+```shell
+192.168.99.100:5000/artistas
+```
+
+Request que retorna todos os artistas que estão no Banco de Dados.
+
+Example Request
+
+curl --location --request GET '192.168.99.100:5000/artistas'
+
+Example Response
+
+[
+  {
+    "idArtist": 1,
+    "idArtistItunes": 162092469,
+    "nameArtist": "Joe Jonas"
+  },
+  {
+    "idArtist": 2,
+    "idArtistItunes": null,
+    "nameArtist": "Testerr"
+  }
+]
+
+* GET Todos os álbuns
+
+```shell
+192.168.99.100:5000/albuns
+```
+
+Request que retorna todos os albuns que estão no Banco de Dados.
+
+Example Request
+
+curl --location --request GET '192.168.99.100:5000/albuns'
+
+Example Response
+
+[
+  {
+    "explicit": "notExplicit",
+    "genre": "Dance",
+    "idAlbum": 2,
+    "idAlbumItunes": 1402144828,
+    "idArtistAlbum": 1,
+    "nameAlbum": "I See Love (feat. Joe Jonas) [From \"Hotel Transylvania 3\"] - Single",
+    "nameArtistAlbum": "Jonas Blue",
+    "trackCount": 1
+  },
+  {
+    "explicit": "notExplicit",
+    "genre": "Soundtrack",
+    "idAlbum": 3,
+    "idAlbumItunes": 1408399412,
+    "idArtistAlbum": 1,
+    "nameAlbum": "It's Party Time (From the \"Hotel Transylvania 3\" Original Motion Picture Soundtrack) - Single",
+    "nameArtistAlbum": "Joe Jonas",
+    "trackCount": 1
+  },
+  {
+    "explicit": "notExplicit",
+    "genre": "Pop",
+    "idAlbum": 4,
+    "idAlbumItunes": 1444618546,
+    "idArtistAlbum": 1,
+    "nameAlbum": "One Chance to Dance (feat. Joe Jonas) - Single",
+    "nameArtistAlbum": "Naughty Boy",
+    "trackCount": 1
+  },
+  {
+    "explicit": "notExplicit",
+    "genre": "Pop",
+    "idAlbum": 5,
+    "idAlbumItunes": 1444619484,
+    "idArtistAlbum": 1,
+    "nameAlbum": "One Chance to Dance (feat. Joe Jonas) [Remixes] - Single",
+    "nameArtistAlbum": "Naughty Boy",
+    "trackCount": 3
+  },
+  {
+    "explicit": "notExplicit",
+    "genre": "Pop",
+    "idAlbum": 6,
+    "idAlbumItunes": 1444854949,
+    "idArtistAlbum": 1,
+    "nameAlbum": "One Chance To Dance (Acoustic) [feat. Joe Jonas] - Single",
+    "nameArtistAlbum": "Naughty Boy",
+    "trackCount": 1
+  },
+  {
+    "explicit": "cleaned",
+    "genre": "Pop",
+    "idAlbum": 7,
+    "idAlbumItunes": 1457234843,
+    "idArtistAlbum": 1,
+    "nameAlbum": "Fastlife",
+    "nameArtistAlbum": "Joe Jonas",
+    "trackCount": 12
+  }
+]
+
+
 
 ## Endpoints
 Com o container rodando no Docker é possível fazer chamadas a API utilizando os endpoints documentados em:
@@ -117,9 +290,7 @@ https://documenter.getpostman.com/view/10132901/SWT5j1Zc
 Mais informações sobre como funciona a lógica da API também se encontram no link acima.
 
 ## Testes Unitários
-O projeto também conta com um arquivo para testes unitários, chamado `test_helpers.py`, que pode ser encontrado dentro da pasta `app`.
-
-Para rodar os testes basta usar o comando:
+Há o teste unitário chamado `test_helpers.py`, que pode ser encontrado dentro da pasta `app`.
 
 ```shell
 python test_helpers.py #Realiza testes unitários
